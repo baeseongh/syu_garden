@@ -33,9 +33,16 @@
             let html = "";
             $.each(data, function(index, user) {
                 let avatar_img_url = getAvatarImgUrl(user);
-                html += `<a href="/attendance/users/${user}">`;
-                html += `<img src="${avatar_img_url}" width="60" />`;
-                html += `</a>`;
+				html += `<a href="/attendance/users/${user}">`;
+					html += `<span class="user_wrapper">`;
+						// html += `<span class="test2">`;
+							html += `<img src="${avatar_img_url}" width="60" />`;
+							html += `<span>${user}</span>`;
+						// html += `</span>`;
+					html += `</span>`;
+				html += `</a>`;
+				
+				
             });
             $("#users").html(html);
         });
@@ -340,8 +347,8 @@ ${data_row.user}
             // 설정, 통계정보 등등 여러 정보 쌓아두는 곳
             let context = {
                 total_attend_count: 0, // 전체 출석 카운트
-                total_noshow_count: 0, // 전체 미출석 카운트
-                start_day: new Date(2020, 3-1, 2), // 시작일 2030.03.02
+				total_noshow_count: 0, // 전체 미출석 카운트
+                start_day: new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }}), // 시작일 2030.03.02
                 today: new Date(), // 오늘
                 formatted_today: moment().format("YYYY-MM-DD"),
                 yesterday: new Date(new Date().setDate(new Date().getDate()-1)), // 어제
@@ -474,7 +481,7 @@ ${data_row.user}
     }
 </script>
 <div class="container">
-    <h2 id="users_title">정원사들</h2>
+    <h2 id="users_title">정원사들</h2> 
     <div id="users"></div>
     <br>
     <h2 id="progress_title">정원사들 시즌5 진행률</h2>

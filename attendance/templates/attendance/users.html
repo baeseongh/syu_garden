@@ -46,15 +46,21 @@ function draw_calendar(attendances) {
 <th>토</th>
 </thead>
 <tbody>`;
+
+	// {{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }}
+
+	
     let today = new Date();
-    let lastday = new Date(2020, 3-1, 2 + {{ gardening_days }} - 1);
-    let endday;
-    if (lastday < today) {
-        endday = lastday;
-    } else {
-        endday = today;
-    }
-    const dates = getDates(new Date(2020, 3-1, 2-1), endday);
+    let lastday = new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }} + {{ gardening_days }} - 1);
+	let endday = lastday;
+	
+    // if (lastday < today) {
+    //     endday = lastday;
+    // } else {
+    //     endday = today;
+	// }
+	
+    const dates = getDates(new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }}-1), endday);
     $.each(dates, function (idx, date) {
         if (idx % 7 === 0) {
             html += `<tr>`;
@@ -63,13 +69,14 @@ function draw_calendar(attendances) {
         let message = "";
         if (formatted_date in attendances_by_date) {
             message += `${formatted_date}<br><span class="attend-emoji">😀<span>`;
-        } else {
-            if (date < new Date(2020, 3-1, 2)) {
-                message = "";
+		} 
+		else 
+		{
+            if (date < new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }})) {
+                message = `${formatted_date}`;
             } else {
                 message = `${formatted_date}<br><span class="attend-emoji">😰<span>`;
-            }
-
+			}
         }
         html += `<td>
 <div>

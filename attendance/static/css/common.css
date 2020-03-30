@@ -16,3 +16,15 @@
 
 .attendance_date {
 }
+
+#users {
+	display: flex;
+}
+.user_wrapper {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+}

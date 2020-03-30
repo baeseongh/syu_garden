@@ -10,7 +10,8 @@ from python_markdown_slack import PythonMarkdownSlack
 def index(request):
     garden = Garden()
     context = {
-        "gardening_days": garden.get_gardening_days()
+        "gardening_days": garden.get_gardening_days(),
+		"start_date": garden.get_start_date(),
     }
     return render(request, 'attendance/index.html', context)
 
@@ -32,7 +33,8 @@ def user(request, user):
     garden = Garden()
     context = {
         "user": user,
-        "gardening_days": garden.get_gardening_days()
+        "gardening_days": garden.get_gardening_days(),
+		"start_date": garden.get_start_date(),
     }
 
     return render(request, 'attendance/users.html', context)
