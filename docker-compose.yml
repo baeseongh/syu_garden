@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+    app:
+        container_name: garden_server
+        build:
+            dockerfile: ./Dockerfile
+        ports:
+            - 8000:8000
+        build:
+            context: .
+        restart: on-failure
+        volumes:
+            - ./:/app/
+        depends_on:
+            - mongo
+        command:
+            - bash
+            - -c
+            - |
+                python manage.py migrate
+                python manage.py runserver 0:8000
+        networks:
+            - garden5
+
+    mongo:
+        image: mongo:latest
+        container_name: container_mongo
+        volumes: 
+            - ./:/app/config
+        networks:
+            - garden5
+        expose: 
+            - 27017
+        ports:
+            - 127.0.0.1:27016:27017
+        # command:
+            # - mongo
+            # - use garden5
+            # - db.createCollection("slack_messages")
+            # - db.slack_messages.createIndex({ts:1}, {unique:true})
+
+            # - |
+            #     use garden5
+            #     db.createCollection("slack_messages")
+            #     db.slack_messages.createIndex({ts:1}, {unique: true})
+
+
+networks:
+    garden5:
+        driver: bridge

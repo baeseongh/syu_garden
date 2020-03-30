@@ -9,10 +9,11 @@ import yaml
 
 class Garden:
     def __init__(self):
+
         config = configparser.ConfigParser()
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         path = os.path.join(BASE_DIR, 'config.ini')
-        config.read(path)
+        config.read(path,"utf-8")
 
         slack_api_token = config['DEFAULT']['SLACK_API_TOKEN']
         self.slack_client = slack.WebClient(token=slack_api_token)
@@ -130,6 +131,11 @@ class Garden:
         return result
 
     # github 봇으로 모은 slack message 들을 slack_messages collection 에 저장
+    def test(self):
+        conn = self.connect_mongo()
+        db = conn.get_database(self.mongo_database)
+        mongo_collection=db.get_collection(self.mongo_collection_slack_message)
+        mongo_collection.insert_one({"wefwef":"wefwef"})
     def collect_slack_messages(self, oldest, latest):
 
         response = self.slack_client.channels_history(
@@ -143,7 +149,7 @@ class Garden:
 
         db = conn.get_database(self.mongo_database)
         mongo_collection = db.get_collection(self.mongo_collection_slack_message)
-
+        print("[hong_ppark] check response: ", response)
         for message in response["messages"]:
             message["ts_for_db"] = datetime.fromtimestamp(float(message["ts"]))
             # pprint.pprint(message)
@@ -172,6 +178,7 @@ class Garden:
     @param selected_date
     """
     def get_attendance(self, selected_date):
+        
         attend_dict = {}
 
         # get all users attendance info

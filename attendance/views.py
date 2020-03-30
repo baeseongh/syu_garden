@@ -9,6 +9,7 @@ from python_markdown_slack import PythonMarkdownSlack
 
 def index(request):
     garden = Garden()
+    garden.test()
     context = {
         "gardening_days": garden.get_gardening_days(),
 		"start_date": garden.get_start_date(),
@@ -57,12 +58,14 @@ def user_api(request, user):
 
 # slack_messages 수집
 def collect(request):
+    print('collect function activate!!')
     oldest = datetime.strptime(request.GET.get('start'), "%Y-%m-%d").timestamp()
     latest = datetime.strptime(request.GET.get('end'), "%Y-%m-%d").timestamp()
 
     garden = Garden()
     garden.collect_slack_messages(oldest, latest)
-
+    print(garden.slack_client.channels_history)
+    print(garden.collect_slack_messages(oldest, latest))
     return JsonResponse({})
 
 
