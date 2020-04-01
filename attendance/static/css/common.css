@@ -1,3 +1,15 @@
+/* Font */
+h2 {
+	margin-top: 3rem;
+	margin-bottom: 1rem;
+}
+
+/* 출석률 그래프 */
+/* .attendance_rate {
+	width: 100%;
+} */
+
+
 .table-rank {
 }
 
@@ -17,8 +29,10 @@
 .attendance_date {
 }
 
+
+
 #users {
-	display: flex;
+	/* display: flex; */
 }
 .user_wrapper {
 	display: flex;
@@ -27,4 +41,9 @@
     align-items: center;
     width: 150px;
     height: 150px;
+}
+
+/* avatars */
+.img_gray {
+	filter: grayscale(1);
 }
