@@ -131,7 +131,6 @@ class Garden:
         return result
 
     # github 봇으로 모은 slack message 들을 slack_messages collection 에 저장
-
     def collect_slack_messages(self, oldest, latest):
 
         response = self.slack_client.channels_history(
@@ -145,7 +144,7 @@ class Garden:
 
         db = conn.get_database(self.mongo_database)
         mongo_collection = db.get_collection(self.mongo_collection_slack_message)
-        print("[hong_ppark] check response: ", response)
+		
         for message in response["messages"]:
             message["ts_for_db"] = datetime.fromtimestamp(float(message["ts"]))
             # pprint.pprint(message)
