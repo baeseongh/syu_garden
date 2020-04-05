@@ -9,7 +9,6 @@ from python_markdown_slack import PythonMarkdownSlack
 
 def index(request):
     garden = Garden()
-    garden.test()
     context = {
         "gardening_days": garden.get_gardening_days(),
 		"start_date": garden.get_start_date(),
