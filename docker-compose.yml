@@ -12,6 +12,9 @@ services:
         restart: on-failure
         volumes:
             - ./:/app/
+            - /etc/localtime:/etc/localtime:ro
+        environment:
+            - TZ=Asia/Seoul
         depends_on:
             - mongo
         command:
