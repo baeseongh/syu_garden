@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9pvo@2w)46+)cvbdmtltg*w$eq#sgs2k@qrwd6x6kcf&y5*&hk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'labs.junho85.pe.kr', 'junho85.vps.phps.kr', 'garden5.junho85.pe.kr', '10.128.0.2', '35.223.111.94']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
