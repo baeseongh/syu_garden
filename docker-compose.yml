@@ -32,7 +32,7 @@ services:
             - ./:/app/config
             - /etc/localtime:/etc/localtime:ro
         environment: 
-            - TZ=Asia/Seoulå
+            - TZ=Asia/Seoul
         networks:
             - garden5
         expose: 
