@@ -51,8 +51,8 @@
 	// 출석부 제목
 	function today_attendance_title(context) {
 		let html = "";
-		let day = context.today.getUTCDate();
-		let month= context.today.getUTCMonth()+1;
+		let day = moment().format("D");
+		let month= moment().format("M");
 
 		html += `<h2>${month}월${day}일 오늘의 정원사들</h2>`;
 
