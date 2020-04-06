@@ -39,7 +39,7 @@ class Garden:
             self.users_with_slackname = yaml.full_load(file)
 
         self.users = list(self.users_with_slackname.keys())
-
+		
         self.start_date = datetime.strptime(config['DEFAULT']['START_DATE'],
                                             "%Y-%m-%d").date()  # start_date e.g.) 2020-03-02
 
