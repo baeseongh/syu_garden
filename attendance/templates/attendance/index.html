@@ -146,10 +146,11 @@
                 formatted_datetime = moment(row.attend).format("YYYY-MM-DD HH:mm:ss");
                 count_attendance++;
 				today_attendance_html += `<td>
+					<p class="ssag">🌱</p>
 					<a href="/attendance/users/${row.name}">
-					<img src="${avatar_img_url}" width="100" class="profile_img">
+					<img src="${avatar_img_url}" width="100" class="profile_img mt-0">
 					</a>
-					<p>🌱${row.name}🌱</p>
+					<p><strong>${row.name}</strong></p>
 					</td>`;
             } else if (context.progressed_days >= {{ gardening_days }}) {
                 today_attendance_html += `<td>

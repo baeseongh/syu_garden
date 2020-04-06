@@ -2,7 +2,7 @@
 body {background-color: #f2f2f2;}
 
 /* font */
-p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 
 /* footer */
 .footer {margin-bottom: 2rem;}
@@ -88,7 +88,7 @@ p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-se
 }
 
 
-
+/* avatars */
 .user_wrapper {
 	display: flex;
     flex-direction: column;
@@ -97,12 +97,16 @@ p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-se
     width: 150px;
     height: 150px;
 }
-/* avatars */
 .profile_img {
 	margin: 1rem 0;
 }
 .img_gray {
 	filter: grayscale(1);
+}
+.ssag {
+	margin: 0;
+    font-size: 1rem;
+    line-height: 1;
 }
 
 /*/---- User Page ----/*/
