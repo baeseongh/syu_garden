@@ -25,6 +25,9 @@ class Garden:
         self.mongo_port = config['MONGO']['PORT']
 
         self.gardening_days = config['DEFAULT']['GARDENING_DAYS']
+		
+       	self.start_date = datetime.strptime(config['DEFAULT']['START_DATE'],
+                                            "%Y-%m-%d").date()  # start_date e.g.)
 
         # mongodb collections
         self.mongo_collection_slack_message = "slack_messages"
@@ -40,9 +43,6 @@ class Garden:
 
         self.users = list(self.users_with_slackname.keys())
 		
-        self.start_date = datetime.strptime(config['DEFAULT']['START_DATE'],
-                                            "%Y-%m-%d").date()  # start_date e.g.) 2020-03-02
-
     def connect_mongo(self):
         return pymongo.MongoClient("mongodb://%s:%s" % (self.mongo_host, self.mongo_port))
 

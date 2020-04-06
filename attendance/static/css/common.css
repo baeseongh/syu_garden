@@ -1,8 +1,67 @@
-/* Font */
-h2 {
-	margin-top: 3rem;
-	margin-bottom: 1rem;
+/* body */
+body {
+	background-color: #f2f2f2;
 }
+
+/* font */
+p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+
+/* footer */
+.footer {
+	margin-bottom: 2rem;
+}
+
+
+
+.table-sm td {
+	border-top: none!important;
+}
+.title {
+	font-size: 1.7rem;
+	margin-bottom: 0;
+}
+.sub-title {
+	margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+	font-weight: 300;
+}
+.custom-nav {
+	background-color: rgba(44,115,220,1);
+	/* background-color: #0061f2;
+    background-image: linear-gradient(135deg, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%); */
+}
+
+/* card */
+.card {
+	position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.35rem;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(34, 39, 46, 0.15);
+    overflow: auto;
+	margin: 2rem 0rem;
+}
+.card-hearder {
+	padding: 1rem 1.35rem;
+    margin-bottom: 0;
+	background-color: rgba(0, 0, 0, 0.03);
+	/* width: 10000%; */
+}
+.card-hearder h2 {
+	font-size: 1.3rem;
+    margin-top: 0.5rem;
+    font-weight: 700;
+}
+
+
 
 /* 출석률 그래프 */
 /* .attendance_rate {
@@ -44,6 +103,9 @@ h2 {
 }
 
 /* avatars */
+.profile_img {
+	margin: 1rem 0;
+}
 .img_gray {
 	filter: grayscale(1);
 }
