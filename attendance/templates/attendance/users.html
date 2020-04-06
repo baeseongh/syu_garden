@@ -94,17 +94,38 @@ ${message}
 
 // 커밋 내역 그리기
 function draw_commits(attendances) {
-    let html = "";
+	let html = "";
     $.each(attendances, function(idx, attendance) {
-        html += `<h4>${attendance.date}</h4>`;
-        $.each(attendance.commits, function(idx, commit) {
-            commit.message[0] = commit.message[0].replace(/(?:\r\n|\r|\n)/g, '<br>');
-			html += `${commit.message[0]}`;
-			// html += `${commit[0]}`;
-        })
+		html += `<a data-toggle="collapse" href="#collapse${idx}" role="button" aria-expanded="false" aria-controls="collapseExample"">
+					<h5><strong>${attendance.date}</strong></h5>
+				</a>`;
+		html += `<div class="collapse" id="collapse${idx}">
+					<div class="card card-body commit-list">`;
+					$.each(attendance.commits, function(idx, commit) {
+						commit.message[0] = commit.message[0].replace(/(?:\r\n|\r|\n)/g, '<br>');
+						html += `<div class="commit-item">${commit.message[0]}</div>`;
+					})		
+		html += 	`</div>
+				</div><hr></hr>`;
     });
-    $("#commits").html(html);
+	$("#commits").html(html);
 }
+
+
+// function draw_commits2(attendances) {
+// 	let html = "";
+// 	let idx2 = ""
+//     $.each(attendances, function(idx, attendance) {
+//         $.each(attendance.commits, function(idx, commit) {
+//             commit.message[0] = commit.message[0].replace(/(?:\r\n|\r|\n)/g, '<br>');
+// 			html += `${commit.message[0]}`;
+// 			idx2 += idx;
+// 		})
+//     });
+// 	$("#collapse"+idx2+"").html(html);	
+// }
+
+
 
 // 출석 데이터 조회
 function get_attendances(user) {
@@ -119,7 +140,8 @@ function get_attendances(user) {
         // console.log(attendance_rate);
 
         draw_calendar(data);
-        draw_commits(data);
+		draw_commits(data);
+		draw_commits2(data);
     });
 }
 
@@ -129,24 +151,44 @@ $(document).ready(function () {
 
 </script>
 
-<div class="container">
-    <h2>{{ user }} 의 출석부!</h2>
+<!-- HTML -->
+<div class="container"> 
     <div class="row">
-        <div class="col-md-3">
-            <img src="https://avatars.githubusercontent.com/{{user}}" width="200"><br>
-            github: <a href="https://github.com/{{ user }}" target="_blank">https://github.com/{{ user }}</a><br>
-            <br>
-        </div>
+		<div class="col-md-3">
+			<div class="card" id="user-card">
+				<div class="card-hearder">
+					<h2>{{ user }}</h2>
+				</div>
+				<div class="card-body">
+					<img src="https://avatars.githubusercontent.com/{{user}}" width="200"><br>
+					<strong>Github : </strong><br>
+					<a href="https://github.com/{{ user }}" target="_blank">https://github.com/{{ user }}</a><br><br>
+				</div>
+			</div>
+		</div>
         <div class="col-md-9">
-            <h3>출석부</h3>
-            <div id="attendance_calendar"></div>
-        </div>
+			<div class="card">
+				<div class="card-hearder">
+					<h2>출석부</h2>
+				</div>
+				<div class="card-body">
+					<div id="attendance_calendar"></div>
+				</div>
+       		 </div>
+		</div>
+	</div>
 
-    </div>
     <div class="row">
-        <div>
-            <h3>커밋 내역</h3>
-            <div id="commits"></div>
+		<div class="col-md-3"></div>
+        <div class="col-md-9">
+			<div class="card">
+				<div class="card-hearder">
+					<h2>커밋 내역</h2>
+				</div>
+				<div class="card-body">
+					<div id="commits"></div>
+				</div>
+       		 </div>
         </div>
     </div>
 </div>

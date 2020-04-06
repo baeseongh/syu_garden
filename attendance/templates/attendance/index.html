@@ -49,20 +49,77 @@
 
 //== Fron Fucntion ==//
 
+// 진행 기간
+
 	// 진행 기간
 	function gardening_day(context) {
 		let html ="";
-		let start_date = new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }});
-		let end_date = new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ gardening_days }} - 1);
+		let start_date = moment(new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }})).format('YYYY[년 ]MM[월 ]DD[일]');
+		let end_date = moment(new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }} + {{ gardening_days }} - 1)).format('YYYY[년 ]MM[월 ]DD[일]');
+		let total_date = {{ gardening_days }};
 
-		console.log(start_date, end_date);
-
-		// console.lgo()
-		html += `(1시간 마다 갱신 됩니다.)`;
+		html += `🗓${start_date} ~ ${end_date} (총 ${total_date}일)`;
 
 		$("#gardening_day_title").html(html)
 	}
 
+	// 진행률 그리기
+	function draw_progress(context) {
+        let html;
+
+        let progress_rate = Math.round(context.progressed_days / context.total_days * 100);
+
+        if (context.progressed_days >= {{ gardening_days }}) {
+            html = `진행률 <strong>100%</strong> (총 ${context.total_days}일 중 ${context.progressed_days}일 완료)`;
+        } else {
+            html = `진행률 <strong>${progress_rate}%</strong> (총 <strong>${context.total_days}일</strong> 중 <strong>${context.progressed_days}일</strong> 진행)`;
+        }
+
+        html += `<div class="progress">`;
+        if (context.progressed_days >= {{ gardening_days }}) {
+            html += `<div class="progress-bar progress-bar-striped"`;
+        } else {
+            html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
+        }
+        html += `
+				role="progressbar"
+				aria-valuenow="${progress_rate}"
+				aria-valuemin="0"
+				aria-valuemax="100"
+				style="width: ${progress_rate}%"></div>
+						</div>
+				`;
+        $("#progress").html(html);
+	}
+	
+	// 전체출석률, 출석/미출석 그리기
+    function draw_attend_noshow(context) {
+		let attend_noshow_html = "";
+        let total_attandance_rate = context.total_attend_count / (context.total_attend_count + context.total_noshow_count) * 100;
+	
+		attend_noshow_html += `전체 출석률 <strong>${Math.round(total_attandance_rate)}% </strong>`;
+        attend_noshow_html += `(출석 : <strong>${context.total_attend_count}</strong> / 미출석 : <strong>${context.total_noshow_count}</strong>)`;
+
+		attend_noshow_html += `<div class="progress">`;
+        if (context.progressed_days >= {{ gardening_days }}) {
+            attend_noshow_html += `<div class="progress-bar progress-bar-striped"`;
+        } else {
+            attend_noshow_html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
+        }
+        attend_noshow_html += `
+				role="progressbar"
+				aria-valuenow="${total_attandance_rate}"
+				aria-valuemin="0"
+				aria-valuemax="100"
+				style="width: ${total_attandance_rate}%"></div>
+						</div>
+				`;
+
+        $("#attend_noshow_div").html(attend_noshow_html);
+	}
+	
+// 오늘의 정원사들	
+	
 	// 출석부 제목
 	function today_attendance_title(context) {
 		let html = "";
@@ -74,7 +131,7 @@
 		$("#today_attendance_title").html(html);
 	}
 
-	 // 오늘의 출석부
+	// 오늘의 정원사들
 	function draw_today_attendance(context, today_attendances) {
         let today_attendance_html = `<table class="table table-sm table-today-attendance"><tbody>`;
         let count_attendance = 0;
@@ -97,7 +154,7 @@
             } else if (context.progressed_days >= {{ gardening_days }}) {
                 today_attendance_html += `<td>
 					<a href="/attendance/users/${row.name}">
-					<span class="no-show">😀</span>
+					<img src="${avatar_img_url}" width="100" class="profile_img">
 					</a>
 					<p>${row.name}</p>
 					</td>`;
@@ -120,7 +177,7 @@
 
         if (!(context.progressed_days >= {{ gardening_days }})) {
             let rate = Math.round(count_attendance/today_attendances.length*100);
-			today_attendance_html += `오늘의 출석률: ${rate}%`;
+			today_attendance_html += `오늘의 출석률 <strong>${rate}%</strong>`;
 
 			today_attendance_html += `<div class="progress">`;
 			if (context.progressed_days >= {{ gardening_days }}) {
@@ -129,101 +186,111 @@
 				today_attendance_html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
 			}
 			today_attendance_html += `
-	role="progressbar"
-	aria-valuenow="${rate}"
-	aria-valuemin="0"
-	aria-valuemax="100"
-	style="width: ${rate}%"></div>
-			</div>
-	`;
-
-
-
+				role="progressbar"
+				aria-valuenow="${rate}"
+				aria-valuemin="0"
+				aria-valuemax="100"
+				style="width: ${rate}%"></div>
+						</div>
+				`;
         }
 
         $("#today_attendance").html(today_attendance_html);
     }
 
-    // 진행률 그리기
-    function draw_progress(context) {
-        let html;
 
-        let progress_rate = Math.round(context.progressed_days / context.total_days * 100);
+// 전체 출석부 그리기
 
-        if (context.progressed_days >= {{ gardening_days }}) {
-            html = `진행률 100% (총 ${context.total_days}일 중 ${context.progressed_days}일 완료)`;
-        } else {
-            html = `진행률 ${progress_rate}% (총 ${context.total_days}일 중 ${context.progressed_days}일 진행)`;
-        }
-
-        html += `<div class="progress">`;
-        if (context.progressed_days >= {{ gardening_days }}) {
-            html += `<div class="progress-bar progress-bar-striped"`;
-        } else {
-            html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
-        }
-        html += `
-role="progressbar"
-aria-valuenow="${progress_rate}"
-aria-valuemin="0"
-aria-valuemax="100"
-style="width: ${progress_rate}%"></div>
-        </div>
+function draw_attendance(data, context) {
+        // 출석부 table 그리기
+        let html = `<table id="attendance-table" class="table table-sm table-striped attendance-table table-hover">
+<thead>
+<tr>
+<th>No</th>
+<th>정원사</th>
+<th>출석률</th>
+<th>순위</th>
 `;
-        $("#progress").html(html);
-	}
-	
-	// 출석/미출석 그리기
-    function draw_attend_noshow(context) {
-		let attend_noshow_html = "";
-        let total_attandance_rate = context.total_attend_count / (context.total_attend_count + context.total_noshow_count) * 100;
-	
-		attend_noshow_html += `전체 출석률: ${Math.round(total_attandance_rate)}% `;
-        attend_noshow_html += `(출석 : ${context.total_attend_count} / 미출석 : ${context.total_noshow_count})`;
-
-		attend_noshow_html += `<div class="progress">`;
-        if (context.progressed_days >= {{ gardening_days }}) {
-            attend_noshow_html += `<div class="progress-bar progress-bar-striped"`;
-        } else {
-            attend_noshow_html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
-        }
-        attend_noshow_html += `
-role="progressbar"
-aria-valuenow="${total_attandance_rate}"
-aria-valuemin="0"
-aria-valuemax="100"
-style="width: ${total_attandance_rate}%"></div>
-        </div>
+        // 날짜 헤더
+        $.each(context.formatted_dates, function(idx, formatted_date) {
+            html += `<th class="attendance_date">${formatted_date}</th>`;
+        });
+        html += `</tr></thead>
+<tbody>
 `;
 
-        $("#attend_noshow_div").html(attend_noshow_html);
+        $.each(data, function(index, data_row) {
+            let attendances_cell_html = "";
+            $.each(context.formatted_dates, function (idx, formatted_date) {
+                if (formatted_date in data_row.attendances) {
+                    attendances_cell_html += `<td title="${data_row.attendances[formatted_date]}">O</td>`;
+                } else {
+                    attendances_cell_html += `<td>X</td>`;
+                }
+            });
+
+            html += `<tr data-count="${data_row.count}" data-user="${data_row.user}" class="user">`;
+            html += `<td>${index + 1}</td>`;
+            html += `<td>
+<a href="/attendance/users/${data_row.user}" target="_blank">
+${data_row.user}
+</a></td>`;
+            html += `<td>${Math.round(data_row.rate)}%</td>`;
+            html += `<td class="rank">${data_row.rank}</td>`;
+            html += attendances_cell_html;
+            html += `</tr>`;
+        });
+
+        // 날짜별 출석률
+        let daily_rate = [];
+        let daily_rate_html = `<td></td>
+<td></td>
+<td></td>`; // 빈칸들
+
+        daily_rate_html += "<td>출석률</td>";
+        $.each(context.formatted_dates, function(idx, formatted_date) {
+			let rate = (context.daily_count[formatted_date] / data.length) * 100;
+			let Rate = Math.round(rate)
+			if (isNaN(Rate) == true) {
+				daily_rate_html += `<td>0%</td>`;
+			} else {
+				daily_rate_html += `<td>${Rate}%</td>`;
+			}
+			
+
+            daily_rate.push([formatted_date, rate, rate.toString() + "%"]);
+        });
+
+        html += `<tr>${daily_rate_html}</tr>`;
+        html += "</tbody></table>";
+        $("#attendance").html(html);
     }
 
 
-    // 출석률 순위 그리기
+// 출석률 순위 그리기
     function draw_rank(data) {
         data.sort(function (a, b) {
             return a.rank - b.rank;
         });
 
         let rank_html = `<table class="table table-sm table-rank">
-<tbody>`;
+		<tbody>`;
         $.each(data, function (idx, item) {
 
             let avatar_img_url = getAvatarImgUrl(item.user);
             let num_per_line = 7;
             if (idx % num_per_line === 0)
-                rank_html += `<tr>`;
-
-            rank_html += `<td>${item.rank}등<br>${Math.round(item.rate)}%</td>`;
-            rank_html += `<td>
-<a href="/attendance/users/${item.user}">
-<img src="${avatar_img_url}" width="80" style="vertical-align:top"/>
-</a>
-${item.user}</td>`;
+			rank_html += `<tr>`;	
+			rank_html += `<td class="rank">
+								<p><strong>${item.rank}등</strong> <span class="rank-percent">${Math.round(item.rate)}%<span></p>
+								<a href="/attendance/users/${item.user}">
+								<img src="${avatar_img_url}" width="80" style="vertical-align:top"/>
+								</a>
+								<p>${item.user}</p>
+						  </td>`;
 
             if (idx % num_per_line === num_per_line - 1)
-                rank_html += `</tr>`;
+			rank_html += `</tr>`;
         });
 
         rank_html += `</tbody></table>`;
@@ -231,7 +298,7 @@ ${item.user}</td>`;
         $("#rank").html(rank_html);
     }
 
-    // 출석률 차트 그리기
+// 출석률 그래프 그리기
     function draw_attendance_chart(context) {
 
         // 출석률 그래프
@@ -260,7 +327,7 @@ ${item.user}</td>`;
         }
     }
 
-    // 요일별 출석률
+// 요일별 출석률
     function draw_attendance_rate_by_weekdays(context) {
         let html = "";
         let weeks = ['일', '월', '화', '수', '목', '금', '토'];
@@ -304,7 +371,7 @@ ${item.user}</td>`;
         }
     }
 
-    // 시간별 출석 카운트
+// 시간별 출석 카운트
     function draw_attendance_count_by_hours(context) {
         let count_by_hours = []; // 시간별 출석수 [hour, count, count.toString() + "%"]
 
@@ -335,69 +402,10 @@ ${item.user}</td>`;
             const chart = new google.visualization.ColumnChart(document.getElementById("attendance_count_by_hours_chart"));
             chart.draw(chartData, options);
         }
-    }
+	}
 
-    // 전체 출석부 그리기
-    function draw_attendance(data, context) {
-        // 출석부 table 그리기
-        let html = `<table id="attendance-table" class="table table-sm table-striped attendance-table table-hover">
-<thead>
-<tr>
-<th>No</th>
-<th>user</th>
-<th>출석률</th>
-<th>순위</th>
-`;
-        // 날짜 헤더
-        $.each(context.formatted_dates, function(idx, formatted_date) {
-            html += `<th class="attendance_date">${formatted_date}</th>`;
-        });
-        html += `</tr></thead>
-<tbody>
-`;
 
-        $.each(data, function(index, data_row) {
-            let attendances_cell_html = "";
-            $.each(context.formatted_dates, function (idx, formatted_date) {
-                if (formatted_date in data_row.attendances) {
-                    attendances_cell_html += `<td title="${data_row.attendances[formatted_date]}">O</td>`;
-                } else {
-                    attendances_cell_html += `<td>X</td>`;
-                }
-            });
-
-            html += `<tr data-count="${data_row.count}" data-user="${data_row.user}" class="user">`;
-            html += `<td>${index + 1}</td>`;
-            html += `<td>
-<a href="/attendance/users/${data_row.user}" target="_blank">
-${data_row.user}
-</a></td>`;
-            html += `<td>${Math.round(data_row.rate)}%</td>`;
-            html += `<td class="rank">${data_row.rank}</td>`;
-            html += attendances_cell_html;
-            html += `</tr>`;
-        });
-
-        // 날짜별 출석률
-        let daily_rate = [];
-        let daily_rate_html = `<td></td>
-<td></td>
-<td></td>`; // 빈칸들
-
-        daily_rate_html += "<td>출석률</td>";
-        $.each(context.formatted_dates, function(idx, formatted_date) {
-            let rate = (context.daily_count[formatted_date] / data.length) * 100;
-            daily_rate_html += `<td>${Math.round(rate)}%</td>`;
-
-            daily_rate.push([formatted_date, rate, rate.toString() + "%"]);
-        });
-
-        html += `<tr>${daily_rate_html}</tr>`;
-        html += "</tbody></table>";
-        $("#attendance").html(html);
-    }
-
-    // 전체 출석부 조회
+// 전체 출석부 조회
     function get_attendances() {
         $.ajax({
             method: "GET",
@@ -550,15 +558,9 @@ ${data_row.user}
         });
     }
 </script>
+
+<!-- HTML -->
 <div class="container">  
-	<!-- <h2 id="progress_title">두유 Know Jandi (삼육 정원사들 Beta!)</h2> -->
-	<!-- <div id="users"></div> -->
-
-	<!-- <h2 id="users_title">참가중인 두유들</h2> 
-    <div id="users"></div>
-	<br> -->
-
-	<!-- 진행기간, 진행률 -->
 	<div class="card">
 		<div class="card-hearder">
 			<h2>진행기간</h2>

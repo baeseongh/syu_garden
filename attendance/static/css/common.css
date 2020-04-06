@@ -1,24 +1,17 @@
 /* body */
-body {
-	background-color: #f2f2f2;
-}
+body {background-color: #f2f2f2;}
 
 /* font */
 p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
 
 /* footer */
-.footer {
-	margin-bottom: 2rem;
-}
+.footer {margin-bottom: 2rem;}
 
-
-
-.table-sm td {
-	border-top: none!important;
-}
+/* nav */
 .title {
 	font-size: 1.7rem;
 	margin-bottom: 0;
+	margin-top: 0.15em;
 }
 .sub-title {
 	margin-bottom: 0.2rem;
@@ -38,7 +31,8 @@ p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-se
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    flex-direction: column;
+	flex-direction: column;
+	flex-wrap: wrap;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
@@ -53,46 +47,48 @@ p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-se
 	padding: 1rem 1.35rem;
     margin-bottom: 0;
 	background-color: rgba(0, 0, 0, 0.03);
-	/* width: 10000%; */
 }
 .card-hearder h2 {
-	font-size: 1.3rem;
+	font-size: 1.35rem;
     margin-top: 0.5rem;
     font-weight: 700;
 }
-
-
+.table-sm td {
+	border-top: none!important;
+}
 
 /* 출석률 그래프 */
 /* .attendance_rate {
 	width: 100%;
 } */
-
-
 .table-rank {
 }
-
 .attendance-table {
     font-size: 10px;
     text-align: center;
 }
-
 .table-today-attendance {
     text-align: center;
 }
-
 .table-today-attendance .no-show {
     font-size: 50px;
 }
-
 .attendance_date {
 }
 
-
-
-#users {
-	/* display: flex; */
+/* 출석률 순위 */
+.rank {
+	text-align: center;
 }
+.rank img {
+	margin-bottom: 1rem;
+}
+.rank-percent {
+	font-size: 0.9rem;
+}
+
+
+
 .user_wrapper {
 	display: flex;
     flex-direction: column;
@@ -101,11 +97,28 @@ p,h1,h2,h3,h4,h5,h6{font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-se
     width: 150px;
     height: 150px;
 }
-
 /* avatars */
 .profile_img {
 	margin: 1rem 0;
 }
 .img_gray {
 	filter: grayscale(1);
+}
+
+/*/---- User Page ----/*/
+#user-card {
+	flex-wrap: inherit!important;
+}
+#user-card img {
+	display: block;
+	margin: 1rem auto;
+}
+.commit-list {
+	border: 1px solid #007bff;
+}
+.commit-item {
+	display: flex;
+}
+.commit-item p {
+	margin: 1rem 0;
 }
