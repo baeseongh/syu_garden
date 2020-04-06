@@ -12,8 +12,6 @@ ADD ./requirements.txt /app/
 
 RUN    pip install -r requirements.txt
 
-COPY ./hello.txt /hello.txt
-
 # COPY cron-time /etc/cron.d/cron-time
 
 # RUN chmod 0644 /etc/cron.d/cron-time
