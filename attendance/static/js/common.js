@@ -1,6 +1,13 @@
-$(document).ready(function(){
-	// collect.init();
-});
+// $(document).ready(function(){
+// 	// collect.init();
+// 	$('#card-header-1').width($('#card-body-1').width());
+// 	$('#card-header-2').width($('#card-body-2').width());
+// });
+
+// $(window).resize(function() {
+// 	$('#card-header-1').width($('#card-body-1').width());
+// 	$('#card-header-2').width($('#card-body-2').width());
+// });
 
 function getAvatarImgUrl(user) {
     return `https://avatars.githubusercontent.com/${user}`;

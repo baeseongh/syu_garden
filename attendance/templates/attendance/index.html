@@ -58,7 +58,7 @@
 		let end_date = moment(new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }} + {{ gardening_days }} - 1)).format('YYYY[년 ]MM[월 ]DD[일]');
 		let total_date = {{ gardening_days }};
 
-		html += `${start_date} ~ ${end_date} (총 ${total_date}일)`;
+		html += `<p>${start_date} ~ ${end_date} (총 ${total_date}일)</p>`;
 
 		$("#gardening_day_title").html(html)
 	}
@@ -563,7 +563,7 @@ ${data_row.user}
 <!-- HTML -->
 <div class="container">  
 	<div class="card">
-		<div class="card-hearder">
+		<div class="card-header">
 			<h2>진행기간</h2>
 			<span id="gardening_day_title"></span>
 		</div>
@@ -576,18 +576,18 @@ ${data_row.user}
 
 	<!-- 오늘의 정원사들 -->
 	<div class="card">
-		<div class="card-hearder" >
+		<div class="card-header" id="card-header-1">
 			<h2><span id="today_attendance_title"></span> 오늘의 정원사들</h2>
-				(1시간 마다 갱신 됩니다.)
+			<p>(1시간 마다 갱신 됩니다.)</p>
 		</div>
-		<div class="card-body">
+		<div class="card-body" id="card-body-1">
 			<div id="today_attendance"></div>
 		</div>
 	</div>
 
 	<!-- 출석부 -->
 	<div class="card">
-		<div class="card-hearder">
+		<div class="card-header">
 			<h2 id="attendance_title">출석부</h2>
 		</div>
 		<div class="card-body">
@@ -597,17 +597,17 @@ ${data_row.user}
 
 	<!-- 출석률 순위 -->
 	<div class="card">
-		<div class="card-hearder">
+		<div class="card-header" id="card-header-2">
 			<h2 id="rank_title">출석률 순위</h2>
 		</div>
-		<div class="card-body">
+		<div class="card-body" id="card-body-2">
 			<div id="rank"></div>
 		</div>
 	</div>
 
 	<!-- 출석률 그래프 -->
 	<div class="card">
-		<div class="card-hearder">
+		<div class="card-header">
 			<h2 id="chart_title">출석률 그래프</h2>
 		</div>
 		<div class="card-body">
@@ -617,7 +617,7 @@ ${data_row.user}
 
 	<!-- 요일별 출석률 -->
 	<div class="card">
-		<div class="card-hearder">
+		<div class="card-header">
 			<h2 id="attendance_rate_by_weekdays_title">요일별 출석률</h2>
 		</div>
 		<div class="card-body">
@@ -628,8 +628,9 @@ ${data_row.user}
 
 	<!-- 시간별 출석수 -->
 	<div class="card">
-		<div class="card-hearder">
-			<h2 id="attendance_count_by_hours_title">시간별 출석수</h2>출석횟수(push)기준입니다. 여러번 하면 여러번 카운트됩니다.
+		<div class="card-header">
+			<h2 id="attendance_count_by_hours_title">시간별 출석수</h2>
+			<p>출석횟수(push)기준입니다. 여러번 하면 여러번 카운트됩니다.</p>
 		</div>
 		<div class="card-body">
 			<div id="attendance_count_by_hours"></div>

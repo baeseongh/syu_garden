@@ -15,6 +15,7 @@ body {background-color: #f2f2f2;}
 	font-size: 1.7rem;
 	margin-bottom: 0;
 	margin-top: 0.15em;
+	font-weight: 900;
 }
 .sub-title {
 	margin-bottom: 0.2rem;
@@ -35,7 +36,6 @@ body {background-color: #f2f2f2;}
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
 	flex-direction: column;
-	flex-wrap: wrap;
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
@@ -43,18 +43,37 @@ body {background-color: #f2f2f2;}
     border: 0 solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.35rem;
 	box-shadow: 0 0.15rem 1.75rem 0 rgba(34, 39, 46, 0.15);
-    overflow: auto;
+    /* overflow: auto; */
 	margin: 2rem 0rem;
+
+	display: -webkit-flex;
+	/* -webkit-flex-direction: row;
+	flex-direction: row; */
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
-.card-hearder {
+/* .card > div {
+	flex: 1;
+	-webkit-flex: 1 100%;
+} */
+.card-header {
 	padding: 1rem 1.35rem;
     margin-bottom: 0;
 	background-color: rgba(0, 0, 0, 0.03);
+	border-bottom: none;
+
 }
-.card-hearder h2 {
+.card-header h2 {
 	font-size: 1.35rem;
     margin-top: 0.5rem;
     font-weight: 700;
+}
+.card-header p {
+	margin-bottom: 0.5rem;
+}
+.card-body {
+	width: 100%;
+    overflow: scroll;
 }
 .table-sm td {
 	border-top: none!important;
@@ -82,6 +101,7 @@ body {background-color: #f2f2f2;}
 /* 출석률 순위 */
 .rank {
 	text-align: center;
+	min-width: 135px;
 }
 .rank img {
 	margin-bottom: 1rem;
@@ -113,6 +133,7 @@ body {background-color: #f2f2f2;}
 }
 
 /*/---- User Page ----/*/
+/* user */
 #user-card {
 	flex-wrap: inherit!important;
 }
@@ -120,6 +141,13 @@ body {background-color: #f2f2f2;}
 	display: block;
 	margin: 1rem auto;
 }
+.user-profile {
+	max-width: 200px;
+    width: 100%;
+}
+
+
+/* commit */
 .commit-list {
 	border: 1px solid #007bff;
 }
@@ -128,4 +156,26 @@ body {background-color: #f2f2f2;}
 }
 .commit-item p {
 	margin: 1rem 0;
+}
+
+
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+	.container-fluid {
+		padding: 0;
+	}
+}
+
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
 }
