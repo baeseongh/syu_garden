@@ -58,7 +58,7 @@
 		let end_date = moment(new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }} + {{ gardening_days }} - 1)).format('YYYY[년 ]MM[월 ]DD[일]');
 		let total_date = {{ gardening_days }};
 
-		html += `🗓${start_date} ~ ${end_date} (총 ${total_date}일)`;
+		html += `${start_date} ~ ${end_date} (총 ${total_date}일)`;
 
 		$("#gardening_day_title").html(html)
 	}
