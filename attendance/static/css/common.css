@@ -24,8 +24,9 @@ body {background-color: #f2f2f2;}
 }
 .custom-nav {
 	background-color: rgba(44,115,220,1);
-	/* background-color: #0061f2;
-    background-image: linear-gradient(135deg, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%); */
+}
+.container-fluid {
+	max-width: 1140px;
 }
 
 /* card */
@@ -43,19 +44,11 @@ body {background-color: #f2f2f2;}
     border: 0 solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.35rem;
 	box-shadow: 0 0.15rem 1.75rem 0 rgba(34, 39, 46, 0.15);
-    /* overflow: auto; */
 	margin: 2rem 0rem;
-
 	display: -webkit-flex;
-	/* -webkit-flex-direction: row;
-	flex-direction: row; */
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
-/* .card > div {
-	flex: 1;
-	-webkit-flex: 1 100%;
-} */
 .card-header {
 	padding: 1rem 1.35rem;
     margin-bottom: 0;
@@ -75,16 +68,15 @@ body {background-color: #f2f2f2;}
 	width: 100%;
     overflow: scroll;
 }
+.card-footer {
+	padding: .75rem 1.25rem 1.1rem;
+	border-top: none;
+}
 .table-sm td {
 	border-top: none!important;
 }
 
-/* 출석률 그래프 */
-/* .attendance_rate {
-	width: 100%;
-} */
-.table-rank {
-}
+/* 출석부 표출 관련 */
 .attendance-table {
     font-size: 10px;
     text-align: center;
@@ -95,13 +87,17 @@ body {background-color: #f2f2f2;}
 .table-today-attendance .no-show {
     font-size: 50px;
 }
-.attendance_date {
+.table-today-attendance p {
+    margin: 0;
+}
+.td-td {
+	min-width: 130px;
 }
 
 /* 출석률 순위 */
 .rank {
 	text-align: center;
-	min-width: 135px;
+	min-width: 130px;
 }
 .rank img {
 	margin-bottom: 1rem;
@@ -109,7 +105,6 @@ body {background-color: #f2f2f2;}
 .rank-percent {
 	font-size: 0.9rem;
 }
-
 
 /* avatars */
 .user_wrapper {
@@ -132,6 +127,7 @@ body {background-color: #f2f2f2;}
     line-height: 1;
 }
 
+
 /*/---- User Page ----/*/
 /* user */
 #user-card {
@@ -146,7 +142,6 @@ body {background-color: #f2f2f2;}
     width: 100%;
 }
 
-
 /* commit */
 .commit-list {
 	border: 1px solid #007bff;
@@ -159,6 +154,7 @@ body {background-color: #f2f2f2;}
 }
 
 
+/*/---- Device Screen ----/*/
 /*
 ##Device = Most of the Smartphones Mobiles (Portrait)
 ##Screen = B/w 320px to 479px

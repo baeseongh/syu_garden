@@ -135,7 +135,8 @@
 	function draw_today_attendance(context, today_attendances) {
         let today_attendance_html = `<table class="table table-sm table-today-attendance"><tbody>`;
         let count_attendance = 0;
-        let num_per_line = 10;
+		let num_per_line = 10;
+		let today_attendance_percent_html = "";
         $.each(today_attendances, function(idx, row) {
             if (idx % num_per_line === 0)
                 today_attendance_html += `<tr>`;
@@ -145,7 +146,7 @@
                 let avatar_img_url = getAvatarImgUrl(row.name);
                 formatted_datetime = moment(row.attend).format("YYYY-MM-DD HH:mm:ss");
                 count_attendance++;
-				today_attendance_html += `<td>
+				today_attendance_html += `<td class="td-td">
 					<p class="ssag">🌱</p>
 					<a href="/attendance/users/${row.name}">
 					<img src="${avatar_img_url}" width="100" class="profile_img mt-0">
@@ -153,7 +154,7 @@
 					<p><strong>${row.name}</strong></p>
 					</td>`;
             } else if (context.progressed_days >= {{ gardening_days }}) {
-                today_attendance_html += `<td>
+                today_attendance_html += `<td class="td-td">
 					<a href="/attendance/users/${row.name}">
 					<img src="${avatar_img_url}" width="100" class="profile_img">
 					</a>
@@ -161,7 +162,7 @@
 					</td>`;
             } else {
 				let avatar_img_url = getAvatarImgUrl(row.name);
-                today_attendance_html += `<td>
+                today_attendance_html += `<td class="td-td">
 					<a href="/attendance/users/${row.name}">
 					<img src="${avatar_img_url}" width="100" class="profile_img img_gray">
 					</a>
@@ -178,15 +179,15 @@
 
         if (!(context.progressed_days >= {{ gardening_days }})) {
             let rate = Math.round(count_attendance/today_attendances.length*100);
-			today_attendance_html += `오늘의 출석률 <strong>${rate}%</strong>`;
+			today_attendance_percent_html += `오늘의 출석률 <strong>${rate}%</strong>`;
 
-			today_attendance_html += `<div class="progress">`;
+			today_attendance_percent_html += `<div class="progress">`;
 			if (context.progressed_days >= {{ gardening_days }}) {
-				today_attendance_html += `<div class="progress-bar progress-bar-striped"`;
+				today_attendance_percent_html += `<div class="progress-bar progress-bar-striped"`;
 			} else {
-				today_attendance_html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
+				today_attendance_percent_html += `<div class="progress-bar progress-bar-striped progress-bar-animated"`;
 			}
-			today_attendance_html += `
+			today_attendance_percent_html += `
 				role="progressbar"
 				aria-valuenow="${rate}"
 				aria-valuemin="0"
@@ -196,7 +197,8 @@
 				`;
         }
 
-        $("#today_attendance").html(today_attendance_html);
+		$("#today_attendance").html(today_attendance_html);
+		$("#today_attendance_percent").html(today_attendance_percent_html);
     }
 
 
@@ -576,12 +578,15 @@ ${data_row.user}
 
 	<!-- 오늘의 정원사들 -->
 	<div class="card">
-		<div class="card-header" id="card-header-1">
+		<div class="card-header">
 			<h2><span id="today_attendance_title"></span> 오늘의 정원사들</h2>
 			<p>(1시간 마다 갱신 됩니다.)</p>
 		</div>
-		<div class="card-body" id="card-body-1">
+		<div class="card-body">
 			<div id="today_attendance"></div>
+		</div>
+		<div class="card-footer" id="today_attendance_percent">
+
 		</div>
 	</div>
 
@@ -597,10 +602,10 @@ ${data_row.user}
 
 	<!-- 출석률 순위 -->
 	<div class="card">
-		<div class="card-header" id="card-header-2">
+		<div class="card-header">
 			<h2 id="rank_title">출석률 순위</h2>
 		</div>
-		<div class="card-body" id="card-body-2">
+		<div class="card-body">
 			<div id="rank"></div>
 		</div>
 	</div>
