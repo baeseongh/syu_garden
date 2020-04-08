@@ -2,10 +2,11 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
 
 /* body */
-body {background-color: #f2f2f2;}
+/* body {background-color: #f2f2f2;} */
 
 /* font */
 * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+/* a { color : #239a3b; } */
 
 /* footer */
 .footer {margin-bottom: 2rem;}
@@ -23,7 +24,9 @@ body {background-color: #f2f2f2;}
 	font-weight: 300;
 }
 .custom-nav {
-	background-color: rgba(44,115,220,1);
+	/* background-color: rgba(44,115,220,1); */
+	/* background-color: #239a3b; */
+	background-color: #24292e;
 }
 .container-fluid {
 	max-width: 1140px;
@@ -48,6 +51,7 @@ body {background-color: #f2f2f2;}
 	display: -webkit-flex;
 	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
+	border: 1px solid #d1d5da;
 }
 .card-header {
 	padding: 1rem 1.35rem;
@@ -63,6 +67,7 @@ body {background-color: #f2f2f2;}
 }
 .card-header p {
 	margin-bottom: 0.5rem;
+	color: #586069;
 }
 .card-body {
 	width: 100%;
@@ -74,6 +79,11 @@ body {background-color: #f2f2f2;}
 }
 .table-sm td {
 	border-top: none!important;
+}
+
+/* 진행률 바 */
+.progress-bar {
+	background-color: #7bc96f;
 }
 
 /* 출석부 표출 관련 */
@@ -144,15 +154,17 @@ body {background-color: #f2f2f2;}
 
 /* commit */
 .commit-list {
-	border: 1px solid #007bff;
+	/* border: 1px solid #007bff; */
+	border: 1px solid #d1d5da;
+	box-shadow: none!important;
 }
 .commit-item {
 	display: flex;
 }
 .commit-item p {
 	margin: 1rem 0;
+	color: #586069;
 }
-
 
 /*/---- Device Screen ----/*/
 /*

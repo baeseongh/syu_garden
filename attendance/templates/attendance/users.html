@@ -95,7 +95,10 @@ ${message}
 // 커밋 내역 그리기
 function draw_commits(attendances) {
 	let html = "";
-    $.each(attendances, function(idx, attendance) {
+	if (attendances == "") {
+		html += `<div class="commit-item"><p>아직 commit이 없어요! :-(</p></div>`;
+	} else {
+		$.each(attendances, function(idx, attendance) {
 		html += `<a data-toggle="collapse" href="#collapse${idx}" role="button" aria-expanded="false" aria-controls="collapseExample"">
 					<h5><strong>${attendance.date}</strong></h5>
 				</a>`;
@@ -108,6 +111,8 @@ function draw_commits(attendances) {
 		html += 	`</div>
 				</div><hr></hr>`;
     });
+	}
+   
 	$("#commits").html(html);
 }
 
