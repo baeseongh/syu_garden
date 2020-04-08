@@ -13,19 +13,17 @@
 
 /* nav */
 .title {
-	font-size: 1.7rem;
+	font-size: 1.6rem;
 	margin-bottom: 0;
 	margin-top: 0.15em;
 	font-weight: 900;
 }
 .sub-title {
 	margin-bottom: 0.2rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 	font-weight: 300;
 }
 .custom-nav {
-	/* background-color: rgba(44,115,220,1); */
-	/* background-color: #239a3b; */
 	background-color: #24292e;
 }
 .container-fluid {
@@ -103,6 +101,9 @@
 .td-td {
 	min-width: 130px;
 }
+.m-w-50 {
+	min-width: 40px;
+}
 
 /* 출석률 순위 */
 .rank {
@@ -168,10 +169,7 @@
 
 /*/---- Device Screen ----/*/
 /*
-##Device = Most of the Smartphones Mobiles (Portrait)
-##Screen = B/w 320px to 479px
 ##Device = 대부분의 스마트폰 모바일 기기(세로)
-##Screen = 320px에서 479px 사이
 */
 @media (min-width: 320px) and (max-width: 480px) {
 	.container-fluid {
@@ -180,10 +178,7 @@
 }
 
 /*
-##Device = Low Resolution Tablets, Mobiles (Landscape)
-##Screen = B/w 481px to 767px
 ##Device = 저해상도 태블릿, 모바일(가로)
-##Screen = 481px에서 767px 사이
 */
 @media (min-width: 481px) and (max-width: 767px) {
 }

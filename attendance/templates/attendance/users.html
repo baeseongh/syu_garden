@@ -46,9 +46,6 @@ function draw_calendar(attendances) {
 <th>토</th>
 </thead>
 <tbody>`;
-
-	// {{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }}
-
 	
     let today = new Date();
     let lastday = new Date({{ start_date.year }}, {{ start_date.month }}-1, {{ start_date.day }} + {{ gardening_days }} - 1);
@@ -115,22 +112,6 @@ function draw_commits(attendances) {
    
 	$("#commits").html(html);
 }
-
-
-// function draw_commits2(attendances) {
-// 	let html = "";
-// 	let idx2 = ""
-//     $.each(attendances, function(idx, attendance) {
-//         $.each(attendance.commits, function(idx, commit) {
-//             commit.message[0] = commit.message[0].replace(/(?:\r\n|\r|\n)/g, '<br>');
-// 			html += `${commit.message[0]}`;
-// 			idx2 += idx;
-// 		})
-//     });
-// 	$("#collapse"+idx2+"").html(html);	
-// }
-
-
 
 // 출석 데이터 조회
 function get_attendances(user) {
