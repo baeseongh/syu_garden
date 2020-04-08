@@ -10,6 +10,9 @@
 
 /* footer */
 .footer {margin-bottom: 2rem;}
+.text-muted {
+	padding: 3px 0px;
+}
 
 /* nav */
 .title {
@@ -26,8 +29,25 @@
 .custom-nav {
 	background-color: #24292e;
 }
-.container-fluid {
-	max-width: 1140px;
+@media (min-width: 576px) {
+	.container-fluid {
+		max-width: 540px;
+	}
+}
+@media (min-width: 768px) {
+	.container-fluid {
+		max-width: 720px;
+	}
+}
+@media (min-width: 992px) {
+	.container-fluid {
+		max-width: 960px;
+	}
+}
+@media (min-width: 1200px) {
+	.container-fluid {
+		max-width: 1140px;
+	}
 }
 
 /* card */
@@ -155,7 +175,6 @@
 
 /* commit */
 .commit-list {
-	/* border: 1px solid #007bff; */
 	border: 1px solid #d1d5da;
 	box-shadow: none!important;
 }
@@ -172,8 +191,21 @@
 ##Device = 대부분의 스마트폰 모바일 기기(세로)
 */
 @media (min-width: 320px) and (max-width: 480px) {
+	.footer {
+		font-size: 0.9rem;
+	}
 	.container-fluid {
 		padding: 0;
+	}
+	.card-header h2 {
+		font-size: 1.3rem;
+	}
+	.card-header p {
+		font-size: 0.88rem;
+	}
+
+	.commit-item p {
+		font-size: 0.9rem;
 	}
 }
 
