@@ -6,13 +6,13 @@ services:
         build:
             dockerfile: ./Dockerfile
         ports:
-            - 8000:8000
+            - 80:8000
         build:
             context: .
         restart: on-failure
         volumes:
             - ./:/app/
-            # - /etc/localtime:/etc/localtime:ro
+            - /etc/localtime:/etc/localtime:ro
         environment:
             - TZ=Asia/Seoul
         depends_on:
@@ -31,7 +31,7 @@ services:
         container_name: container_mongo
         volumes: 
             - ./:/app/config
-            # - /etc/localtime:/etc/localtime:ro
+            - /etc/localtime:/etc/localtime:ro
         environment: 
             - TZ=Asia/Seoul
         networks:
