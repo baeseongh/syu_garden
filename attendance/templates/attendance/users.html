@@ -117,7 +117,7 @@ function draw_commits(attendances) {
 function get_attendances(user) {
     $.ajax({
         method: "GET",
-        url: `/attendance/api/users/${user}`,
+        url: `/api/users/${user}`,
         dataType: "JSON",
         data: {}
     }).done(function (data) {

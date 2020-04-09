@@ -51,7 +51,6 @@ services:
             #     db.createCollection("slack_messages")
             #     db.slack_messages.createIndex({ts:1}, {unique: true})
 
-
 networks:
     garden5:
         driver: bridge
