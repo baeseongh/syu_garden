@@ -1,0 +1,216 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+
+/* body */
+/* body {background-color: #f2f2f2;} */
+
+/* font */
+* { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif'; }
+/* a { color : #239a3b; } */
+
+/* footer */
+.footer {margin-bottom: 2rem;}
+.text-muted {
+	padding: 3px 0px;
+}
+
+/* nav */
+.title {
+	font-size: 1.6rem;
+	margin-bottom: 0;
+	margin-top: 0.15em;
+	font-weight: 900;
+}
+.sub-title {
+	margin-bottom: 0.2rem;
+    font-size: 1rem;
+	font-weight: 300;
+}
+.custom-nav {
+	background-color: #24292e;
+}
+@media (min-width: 576px) {
+	.container-fluid {
+		max-width: 540px;
+	}
+}
+@media (min-width: 768px) {
+	.container-fluid {
+		max-width: 720px;
+	}
+}
+@media (min-width: 992px) {
+	.container-fluid {
+		max-width: 960px;
+	}
+}
+@media (min-width: 1200px) {
+	.container-fluid {
+		max-width: 1140px;
+	}
+}
+
+/* card */
+.card {
+	position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+	flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.35rem;
+	box-shadow: 0 0.15rem 1.75rem 0 rgba(34, 39, 46, 0.15);
+	margin: 2rem 0rem;
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	border: 1px solid #d1d5da;
+}
+.card-header {
+	padding: 1rem 1.35rem;
+    margin-bottom: 0;
+	background-color: rgba(0, 0, 0, 0.03);
+	border-bottom: none;
+
+}
+.card-header h2 {
+	font-size: 1.35rem;
+    margin-top: 0.5rem;
+    font-weight: 700;
+}
+.card-header p {
+	margin-bottom: 0.5rem;
+	color: #586069;
+}
+.card-body {
+	width: 100%;
+    overflow: auto;
+}
+.card-footer {
+	padding: .75rem 1.25rem 1.1rem;
+	border-top: none;
+}
+.table-sm td {
+	border-top: none!important;
+}
+
+/* 진행률 바 */
+.progress-bar {
+	background-color: #7bc96f;
+}
+
+/* 출석부 표출 관련 */
+.attendance-table {
+    font-size: 10px;
+    text-align: center;
+}
+.table-today-attendance {
+    text-align: center;
+}
+.table-today-attendance .no-show {
+    font-size: 50px;
+}
+.table-today-attendance p {
+    margin: 0;
+}
+.td-td {
+	min-width: 130px;
+}
+.m-w-50 {
+	min-width: 40px;
+}
+
+/* 출석률 순위 */
+.rank {
+	text-align: center;
+	min-width: 130px;
+}
+.rank img {
+	margin-bottom: 1rem;
+}
+.rank-percent {
+	font-size: 0.9rem;
+}
+
+/* avatars */
+.user_wrapper {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+}
+.profile_img {
+	margin: 1rem 0;
+}
+.img_gray {
+	filter: grayscale(1);
+}
+.ssag {
+	margin: 0;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+
+/*/---- User Page ----/*/
+/* user */
+#user-card {
+	flex-wrap: inherit!important;
+}
+#user-card img {
+	display: block;
+	margin: 1rem auto;
+}
+.user-profile {
+	max-width: 200px;
+    width: 100%;
+}
+
+/* commit */
+.commit-list {
+	border: 1px solid #d1d5da;
+	box-shadow: none!important;
+}
+.commit-item {
+	display: flex;
+}
+.commit-item p {
+	margin: 1rem 0;
+	color: #586069;
+}
+
+/*/---- Device Screen ----/*/
+/*
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+	.footer {
+		font-size: 0.9rem;
+	}
+	.container-fluid {
+		padding: 0;
+	}
+	.card-header h2 {
+		font-size: 1.3rem;
+	}
+	.card-header p {
+		font-size: 0.88rem;
+	}
+
+	.commit-item p {
+		font-size: 0.9rem;
+	}
+}
+
+/*
+##Device = 저해상도 태블릿, 모바일(가로)
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
