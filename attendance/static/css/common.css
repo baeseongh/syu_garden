@@ -21,13 +21,29 @@
 	margin-top: 0.15em;
 	font-weight: 900;
 }
+.title-logo {
+	background-image: url('../logo.png');
+	background-size: cover;
+	background-position: center;
+	height: 34px;
+    width: 195px;
+}
 .sub-title {
-	margin-bottom: 0.2rem;
+	/* margin-bottom: 0.2rem;
     font-size: 1rem;
-	font-weight: 300;
+	font-weight: 300; */
+	color: #faf31e;
+    margin-bottom: 0px;
+    margin-top: 0.3rem;
+    padding-left: 3px;
+    font-size: 1rem;
+    font-weight: 400;
+    text-shadow: 0px 2px 0px #0000005e;
 }
 .custom-nav {
-	background-color: #24292e;
+	/* background-color: #24292e; */
+	background-color: #155216;
+    background-image: linear-gradient(135deg, #7ac714 -30%, #155216 100%);
 }
 @media (min-width: 576px) {
 	.container-fluid {

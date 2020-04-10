@@ -21,6 +21,9 @@
 	margin-top: 0.15em;
 	font-weight: 900;
 }
+.title-logo {
+	background-image: url('../logo.png');
+}
 .sub-title {
 	margin-bottom: 0.2rem;
     font-size: 1rem;
