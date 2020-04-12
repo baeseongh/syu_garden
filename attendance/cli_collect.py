@@ -10,4 +10,4 @@ tomorrow = today + timedelta(days=1)
 oldest = yesterday.timestamp()
 latest = tomorrow.timestamp()
 
-garden.collect_slack_messages(oldest, latest)
+garden.collect_slack_messages(today, latest)
